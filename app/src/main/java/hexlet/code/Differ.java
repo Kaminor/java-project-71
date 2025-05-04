@@ -1,16 +1,16 @@
 package hexlet.code;
-import java.util.TreeMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Differ {
     public static String generate(Map<String, Object> data1, Map<String, Object> data2) {
         String result = "{\n";
-        TreeMap<String, Object> map = new TreeMap<>();
+        HashSet<String> keys = new HashSet<>();
 
-        map.putAll(data1);
-        map.putAll(data2);
+        keys.addAll(data1.keySet());
+        keys.addAll(data2.keySet());
 
-        for (String key : map.keySet()) {
+        for (String key : keys) {
             Object value1 = data1.get(key);
             Object value2 = data2.get(key);
 
