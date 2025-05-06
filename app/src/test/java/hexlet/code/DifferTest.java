@@ -12,7 +12,7 @@ public class DifferTest {
                             +  "\n  - follow: false"
                             +  "\n  - timeout: 50"
                             +  "\n  + timeout: 20"
-                            +  "\n  + verbose: true "
+                            +  "\n  + verbose: true"
                             +  "\n}";
 
         Map<String, Object> data1 = JsonParser.parseJson("file1.json");
