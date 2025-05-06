@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonParser {
     public static Path getFixturePath(String fileName) {
-        return Paths.get("src", "main", "resources", "data", fileName)
+        return Paths.get("src", "main", "resources", fileName)
                 .toAbsolutePath().normalize();
     }
 
