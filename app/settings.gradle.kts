@@ -1,4 +1,4 @@
-/*rootProject.name = "app"
+rootProject.name = "app"
 
 plugins {
     // See https://jmfayard.github.io/refreshVersions
