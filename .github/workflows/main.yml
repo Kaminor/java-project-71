@@ -23,8 +23,7 @@ jobs:
           uses: gradle/actions/setup-gradle@v4
           with:
             fetch-depth: 0
-        - run: cd app
-        - run: ./gradlew build
+        - run: cd app || ./gradlew build
         - name: Cache SonarQube packages
           uses: actions/cache@v4
           with:
@@ -40,4 +39,4 @@ jobs:
         - name: Build and analyze
           env:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: ./gradlew sonar --info
+          run: cd app || ./gradlew sonar --info
