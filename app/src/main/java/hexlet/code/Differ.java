@@ -1,6 +1,7 @@
 package hexlet.code;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class Differ {
     public static String generate(Map<String, Object> data1, Map<String, Object> data2) {
@@ -10,7 +11,10 @@ public class Differ {
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
 
-        for (String key : keys) {
+        TreeSet<String> sortedKeys = new TreeSet<>();
+        sortedKeys.addAll(keys);
+
+        for (String key : sortedKeys) {
             Object value1 = data1.get(key);
             Object value2 = data2.get(key);
 

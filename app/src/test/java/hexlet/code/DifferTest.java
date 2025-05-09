@@ -7,13 +7,7 @@ public class DifferTest {
 
     @Test
     public void testCorrectionEquals() throws Exception {
-        String expected = "{\n  - proxy: 123.234.53.22"
-                        + "\n    host: hexlet.io"
-                        +  "\n  - follow: false"
-                        +  "\n  - timeout: 50"
-                        +  "\n  + timeout: 20"
-                        +  "\n  + verbose: true "
-                        +  "\n}";
+        String expected = JsonParser.readFixture("expected_json_output.txt");
 
         Map<String, Object> data1 = JsonParser.parseJson("file1.json");
         Map<String, Object> data2 = JsonParser.parseJson("file2.json");
