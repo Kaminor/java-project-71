@@ -1,11 +1,14 @@
 package hexlet.code;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
-
+import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class JsonParser {
     public static Path getFixturePath(String fileName) {
@@ -25,7 +28,30 @@ public class JsonParser {
         return objMapper.readValue(readFile, new TypeReference<Map<String, Object>>() { });
     }
 
+    public static Map<String, Object> parseYaml(String fileName) throws Exception {
+        ObjectMapper objMapper = new ObjectMapper(new YAMLFactory());
+        Path filePath = getFixturePath(fileName);
+        Map dataMap = objMapper.readValue(new File(String.valueOf(filePath)), Map.class);
+        HashMap<String, Object> resultMap = new HashMap<>(dataMap);
+
+        return resultMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> (String) entry.getKey(),
+                        entry -> entry.getValue()
+                ));
+
+        /*
+        HashMap<String, Object> resultMap = new HashMap<>();
+        for (var element: some.keySet()) {
+            resultMap.put((String) element, some.get(element));
+        }
+
+        return resultMap;*/
+    }
+
     public static void main(String[] args) throws Exception {
+        //var res = parseYaml("/Users/ivanzubarev/Java/java-project-71/app/src/main/resources/file1.yml");
+        //System.out.println(res);
         //Map<String, Object> data1 = parseJson("file1.json");
         //Map<String, Object> data2 = parseJson("file2.json");
         //var diff = Differ.generate(data1, data2);
