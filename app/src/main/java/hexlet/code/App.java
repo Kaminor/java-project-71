@@ -33,8 +33,8 @@ public class App {
 
         @Override
         public Integer call() throws Exception {
-            Map<String, Object> data1 = JsonParser.parseJson(file1);
-            Map<String, Object> data2 = JsonParser.parseJson(file2);
+            Map<String, Object> data1 = Parser.parseYaml(file1);
+            Map<String, Object> data2 = Parser.parseYaml(file2);
             var diff = Differ.generate(data1, data2);
             System.out.println(diff);
             return 0;
