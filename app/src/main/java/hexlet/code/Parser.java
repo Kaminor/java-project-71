@@ -1,5 +1,4 @@
 package hexlet.code;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,30 +28,24 @@ public class Parser {
 
     public static Map<String, Object> parseYaml(String fileName) throws Exception {
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory());
-        Path filePath = getFixturePath(fileName);
-        Map<Object, Object> dataMap = objMapper.readValue(new File(String.valueOf(filePath)), Map.class);
+        var readFile = readFixture(fileName);
+
+        Map<Object, Object> dataMap = objMapper.readValue(readFile, new TypeReference<Map<Object, Object>>() { });
 
         return dataMap.entrySet().stream()
                 .collect(Collectors.toMap(
                         entry -> (String) entry.getKey(),
                         entry -> entry.getValue() != null ? entry.getValue() : "null"
                 ));
-
-        /*
-        HashMap<String, Object> resultMap = new HashMap<>();
-        for (var element: some.keySet()) {
-            resultMap.put((String) element, some.get(element));
-        }
-
-        return resultMap;*/
     }
 
     public static void main(String[] args) throws Exception {
-        var res = parseYaml("file1.yml");
-        System.out.println(res);
-        //Map<String, Object> data1 = parseJson("file1.json");
-        //Map<String, Object> data2 = parseJson("file2.json");
-        //var diff = Differ.generate(data1, data2);
-        //System.out.println(diff);
+        var data1 = parseJson("file1.json");
+        var data2 = parseJson("file2.json");
+
+        var diffs = DifferUtil.buildDiff(data1, data2);
+        var result = Formatter.generate(diffs);
+
+        System.out.println(result);
     }
 }
