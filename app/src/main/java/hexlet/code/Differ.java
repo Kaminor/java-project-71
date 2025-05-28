@@ -1,30 +1,27 @@
 package hexlet.code;
-import java.util.Map;
-import java.util.TreeSet;
+
 
 public class Differ {
-    public static String generate(Map<String, Object> data1, Map<String, Object> data2) {
-        String result = "{\n";
-        TreeSet<String> keys = new TreeSet<>();
+    public String key;
+    public Object newValue;
+    public Object oldValue;
 
-        keys.addAll(data1.keySet());
-        keys.addAll(data2.keySet());
 
-        for (String key : keys) {
-            Object value1 = data1.get(key);
-            Object value2 = data2.get(key);
+    public Differ(String key, Object newValue, Object oldValue) {
+        this.key = key;
+        this.newValue = newValue;
+        this.oldValue = oldValue;
+    }
 
-            if (value1 != null && value2 == null) {
-                result += String.format("  - %s: %s%n", key, value1);
-            } else if (value1 == null && value2 != null) {
-                result += String.format("  + %s: %s%n", key, value2);
-            } else if (value1.equals(value2)) {
-                result += String.format("    %s: %s%n", key, value1);
-            } else if (value1 != null && value2 != null) {
-                result += String.format("  - %s: %s%n", key, value1);
-                result += String.format("  + %s: %s%n", key, value2);
-            }
-        }
-        return result + "}";
+    public String getKey() {
+        return this.key;
+    }
+
+    public Object getNewValue() {
+        return this.newValue;
+    }
+
+    public Object getOldValue() {
+        return this.oldValue;
     }
 }

@@ -4,7 +4,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Option;
 
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class App {
@@ -33,10 +32,15 @@ public class App {
 
         @Override
         public Integer call() throws Exception {
-            Map<String, Object> data1 = Parser.parseYaml(file1);
-            Map<String, Object> data2 = Parser.parseYaml(file2);
-            var diff = Differ.generate(data1, data2);
-            System.out.println(diff);
+            var data1 = Parser.parseYaml(file1);
+            var data2 = Parser.parseYaml(file2);
+
+            var diffs = DifferUtil.buildDiff(data1, data2);
+            var result = Formatter.generate(diffs, format);
+
+            System.out.println(result);
+            //var diff = Differ.generate(data1, data2, format);
+            //System.out.println(diff);
             return 0;
         }
     }
