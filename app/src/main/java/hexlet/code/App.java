@@ -1,9 +1,10 @@
 package hexlet.code;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Option;
-
 import java.util.concurrent.Callable;
 
 public class App {
@@ -32,15 +33,22 @@ public class App {
 
         @Override
         public Integer call() throws Exception {
-            var data1 = Parser.parseYaml(file1);
-            var data2 = Parser.parseYaml(file2);
+            var data1 = Parser.parse(file1);
+            var data2 = Parser.parse(file2);
 
             var diffs = DifferUtil.buildDiff(data1, data2);
-            var result = Formatter.generate(diffs, format);
+            var result = Formatter.callFormatType(diffs, format);
 
-            System.out.println(result);
-            //var diff = Differ.generate(data1, data2, format);
-            //System.out.println(diff);
+            if (format.equals("json")) {
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+                String jsonOutput = mapper.writeValueAsString(result);
+                System.out.println(jsonOutput);
+            } else {
+                System.out.println(result);
+            }
+
             return 0;
         }
     }

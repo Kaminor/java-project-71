@@ -19,14 +19,7 @@ public class Parser {
         return Files.readString(path);
     }
 
-    public static Map<String, Object> parseJson(String file) throws Exception {
-        ObjectMapper objMapper = new ObjectMapper();
-        var readFile = readFixture(file);
-
-        return objMapper.readValue(readFile, new TypeReference<Map<String, Object>>() { });
-    }
-
-    public static Map<String, Object> parseYaml(String fileName) throws Exception {
+    public static Map<String, Object> parse(String fileName) throws Exception {
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory());
         var readFile = readFixture(fileName);
 
@@ -37,15 +30,5 @@ public class Parser {
                         entry -> (String) entry.getKey(),
                         entry -> entry.getValue() != null ? entry.getValue() : "null"
                 ));
-    }
-
-    public static void main(String[] args) throws Exception {
-        var data1 = parseJson("file1.json");
-        var data2 = parseJson("file2.json");
-
-        var diffs = DifferUtil.buildDiff(data1, data2);
-        var result = Formatter.generate(diffs);
-
-        System.out.println(result);
     }
 }
