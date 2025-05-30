@@ -1,6 +1,5 @@
 package hexlet.code;
 
-
 public class Differ {
     public String key;
     public Object newValue;
