@@ -23,8 +23,10 @@ dependencies {
     implementation ("info.picocli:picocli:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0")
-    compileOnly ("org.projectlombok:lombok:1.18.24")
-    annotationProcessor ("org.projectlombok:lombok:1.18.24")
+    compileOnly ("org.projectlombok:lombok:1.18.32")
+    annotationProcessor ("org.projectlombok:lombok:1.18.32")
+    testCompileOnly ("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor ("org.projectlombok:lombok:1.18.32")
 }
 
 tasks.test {
