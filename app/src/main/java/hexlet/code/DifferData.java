@@ -1,9 +1,9 @@
 package hexlet.code;
 
-public class DifferData {
-    public String key;
-    public Object newValue;
-    public Object oldValue;
+public final class DifferData {
+    private final String key;
+    private final Object newValue;
+    private final Object oldValue;
 
 
     public DifferData(String key, Object newValue, Object oldValue) {
