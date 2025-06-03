@@ -10,8 +10,14 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class Parser {
     public static Path getFixturePath(String fileName) {
-        return Paths.get("src", "main", "resources", fileName)
-                .toAbsolutePath().normalize();
+        Path path = Paths.get(fileName);
+        if (!path.isAbsolute()) {
+            path = Paths.get("src", "test", "resources", "fixtures", fileName);
+        }
+        return path.toAbsolutePath().normalize();
+
+        /*return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();*/
     }
 
     public static String readFixture(String fileName) throws Exception {
