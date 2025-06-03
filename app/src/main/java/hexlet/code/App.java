@@ -31,7 +31,8 @@ public class App {
 
         @Override
         public Integer call() throws Exception {
-            Differ.generate(file1, file2, format);
+            var result = Differ.generate(file1, file2, format);
+            System.out.println(result);
             return 0;
         }
     }
