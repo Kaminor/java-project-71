@@ -6,10 +6,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class PlainGenerator {
-    public static String generatePlain(List<Differ> differs) {
+    public static String generatePlain(List<DifferData> differs) {
         String result = "";
 
-        for (Differ diff: differs) {
+        for (DifferData diff: differs) {
             String key = diff.getKey();
             Object oldValue = diff.getOldValue();
             Object newValue = diff.getNewValue();

@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Formatter {
-    public static Object callFormatType(List<Differ> data, String formatName) {
+    public static Object callFormatType(List<DifferData> data, String formatName) {
         if (formatName.equals("plain")) {
             return PlainGenerator.generatePlain(data);
         }

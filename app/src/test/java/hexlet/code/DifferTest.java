@@ -14,7 +14,7 @@ public class DifferTest {
 
         Map<String, Object> data1 = Parser.parse("file1.json");
         Map<String, Object> data2 = Parser.parse("file2.json");
-        List<Differ> diffs = DifferUtil.buildDiff(data1, data2);
+        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
         String actual = StylishGenerator.generateStylish(diffs);
 
         assertEquals(expected, actual);
@@ -26,7 +26,7 @@ public class DifferTest {
 
         Map<String, Object> data1 = Parser.parse("file1.yml");
         Map<String, Object> data2 = Parser.parse("file2.yml");
-        List<Differ> diffs = DifferUtil.buildDiff(data1, data2);
+        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
         String actual = StylishGenerator.generateStylish(diffs);
 
         assertEquals(expected, actual);
@@ -38,7 +38,7 @@ public class DifferTest {
 
         Map<String, Object> data1 = Parser.parse("nested1.yml");
         Map<String, Object> data2 = Parser.parse("nested2.yml");
-        List<Differ> diffs = DifferUtil.buildDiff(data1, data2);
+        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
         String actual = StylishGenerator.generateStylish(diffs);
 
         assertEquals(expected, actual);
@@ -50,7 +50,7 @@ public class DifferTest {
 
         Map<String, Object> data1 = Parser.parse("nested1.yml");
         Map<String, Object> data2 = Parser.parse("nested2.yml");
-        List<Differ> diffs = DifferUtil.buildDiff(data1, data2);
+        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
         String actual = PlainGenerator.generatePlain(diffs);
 
         assertEquals(expected, actual);
@@ -65,7 +65,7 @@ public class DifferTest {
 
         Map<String, Object> data1 = Parser.parse("file1.json");
         Map<String, Object> data2 = Parser.parse("file2.json");
-        List<Differ> diffs = DifferUtil.buildDiff(data1, data2);
+        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
         List<JsonDiffer> actual = JsonGenerator.generateJson(diffs);
 
         assertEquals(expected, actual);

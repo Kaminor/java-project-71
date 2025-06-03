@@ -2,10 +2,10 @@ package hexlet.code;
 import java.util.List;
 
 public class StylishGenerator {
-    public static String generateStylish(List<Differ> differs) {
+    public static String generateStylish(List<DifferData> differs) {
         String result = "{\n";
 
-        for (Differ diff: differs) {
+        for (DifferData diff: differs) {
             String key = diff.getKey();
             Object newValue = diff.getNewValue();
             Object oldValue = diff.getOldValue();

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonGenerator {
-    public static List<JsonDiffer> generateJson(List<Differ> differs) {
+    public static List<JsonDiffer> generateJson(List<DifferData> differs) {
         List<JsonDiffer> result = new ArrayList<>();
 
         for (var element : differs) {

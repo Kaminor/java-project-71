@@ -5,19 +5,19 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class DifferUtil {
-    public static List<Differ> buildDiff(Map<String, Object> oldMap, Map<String, Object> newMap) {
+    public static List<DifferData> buildDiff(Map<String, Object> oldMap, Map<String, Object> newMap) {
         TreeSet<String> allKeys = new TreeSet<>();
 
         allKeys.addAll(oldMap.keySet());
         allKeys.addAll(newMap.keySet());
 
-        ArrayList<Differ> differ = new ArrayList<>();
+        ArrayList<DifferData> differ = new ArrayList<>();
 
         for (String key: allKeys) {
             Object oldValue = oldMap.get(key);
             Object newValue = newMap.get(key);
 
-            differ.add(new Differ(key, newValue, oldValue));
+            differ.add(new DifferData(key, newValue, oldValue));
 
         }
         return differ;
