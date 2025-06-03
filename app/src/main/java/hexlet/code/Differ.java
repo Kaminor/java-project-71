@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Differ {
-    public static Object generate(String filepath1, String filepath2, String formatName) throws Exception {
+    public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
         var data1 = Parser.parse(filepath1);
         var data2 = Parser.parse(filepath2);
 
