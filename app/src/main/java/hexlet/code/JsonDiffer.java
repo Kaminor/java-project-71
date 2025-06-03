@@ -5,11 +5,14 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 public final class JsonDiffer {
-    private final String key;
-    private final String type;
-    private final Object newValue;
-    private final Object oldValue;
+    private String key;
+    private String type;
+    private Object newValue;
+    private Object oldValue;
 
+    public JsonDiffer() {
+
+    }
 
     public JsonDiffer(String key, String type, Object newValue, Object oldValue) {
         this.key = key;
