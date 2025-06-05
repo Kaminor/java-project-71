@@ -1,72 +1,69 @@
 package hexlet.code;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import java.util.List;
-import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
     @Test
-    public void testJson() throws Exception {
-        String expected = Parser.readFixture("expected_flat_output.txt");
-
-        Map<String, Object> data1 = Parser.parse("file1.json");
-        Map<String, Object> data2 = Parser.parse("file2.json");
-        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
-        String actual = StylishGenerator.generateStylish(diffs);
+    public void testJsonDefaultFormat() throws Exception {
+        String expected = Parser.readFixture("expected_default_format.txt");
+        String actual = Differ.generate("file1.json", "file2.json");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testYaml() throws Exception {
-        String expected = Parser.readFixture("expected_flat_output.txt");
-
-        Map<String, Object> data1 = Parser.parse("file1.yml");
-        Map<String, Object> data2 = Parser.parse("file2.yml");
-        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
-        String actual = StylishGenerator.generateStylish(diffs);
+    public void testJsonStylishFormat() throws Exception {
+        String expected = Parser.readFixture("expected_stylish_format.txt");
+        String actual = Differ.generate("file1.json", "file2.json", "stylish");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testNestedYaml() throws Exception {
-        String expected = Parser.readFixture("expected_nested_output.txt");
-
-        Map<String, Object> data1 = Parser.parse("nested1.yml");
-        Map<String, Object> data2 = Parser.parse("nested2.yml");
-        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
-        String actual = StylishGenerator.generateStylish(diffs);
+    public void testJsonPlainFormat() throws Exception {
+        String expected = Parser.readFixture("expected_plain_format.txt");
+        String actual = Differ.generate("file1.json", "file2.json", "plain");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testPlainFormat() throws Exception {
-        String expected = Parser.readFixture("expected_plain_format");
-
-        Map<String, Object> data1 = Parser.parse("nested1.yml");
-        Map<String, Object> data2 = Parser.parse("nested2.yml");
-        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
-        String actual = PlainGenerator.generatePlain(diffs);
+    public void testJsonFileFormatJson() throws Exception {
+        String expected = Parser.readFixture("expected_json_format.txt");
+        String actual = Differ.generate("file1.json", "file2.json", "json");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testJsonFormat() throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
+    public void testYmlDefaultFormat() throws Exception {
+        String expected = Parser.readFixture("expected_default_format.txt");
+        String actual = Differ.generate("file1.yml", "file2.yml");
 
-        String expectedJson = Parser.readFixture("expected_json_output.json");
-        List<JsonDiffer> expected = mapper.readValue(expectedJson, new TypeReference<List<JsonDiffer>>() { });
+        assertEquals(expected, actual);
+    }
 
-        Map<String, Object> data1 = Parser.parse("file1.json");
-        Map<String, Object> data2 = Parser.parse("file2.json");
-        List<DifferData> diffs = DifferUtil.buildDiff(data1, data2);
-        List<JsonDiffer> actual = JsonGenerator.generateJson(diffs);
+    @Test
+    public void testYmlStylishFormat() throws Exception {
+        String expected = Parser.readFixture("expected_stylish_format.txt");
+        String actual = Differ.generate("file1.yml", "file2.yml", "stylish");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testYmlPlainFormat() throws Exception {
+        String expected = Parser.readFixture("expected_plain_format.txt");
+        String actual = Differ.generate("file1.yml", "file2.yml", "plain");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testYmlFileFormatJson() throws Exception {
+        String expected = Parser.readFixture("expected_json_format.txt");
+        String actual = Differ.generate("file1.yml", "file2.yml", "json");
 
         assertEquals(expected, actual);
     }
