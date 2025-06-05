@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.generators;
+import hexlet.code.DifferData;
+
 import java.util.List;
 
 public class StylishGenerator {

@@ -1,4 +1,7 @@
-package hexlet.code;
+package hexlet.code.generators;
+import hexlet.code.DifferData;
+import hexlet.code.JsonDiffer;
+
 import java.util.ArrayList;
 import java.util.List;
 
