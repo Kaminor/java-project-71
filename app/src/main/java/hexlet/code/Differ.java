@@ -2,6 +2,9 @@ package hexlet.code;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import hexlet.code.generators.JsonGenerator;
+import hexlet.code.generators.PlainGenerator;
+import hexlet.code.generators.StylishGenerator;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
@@ -26,7 +29,7 @@ public class Differ {
         return StylishGenerator.generateStylish(diffs);
     }
 
-    public static Object generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filepath1, String filepath2) throws Exception {
         return generate(filepath1, filepath2, "stylish");
     }
 }
