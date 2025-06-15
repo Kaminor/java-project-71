@@ -5,6 +5,13 @@ import java.nio.file.Paths;
 
 public class FilePath {
     public static Path getFixturePath(String fileName) throws Exception {
+        Path filePath = Paths.get(fileName);
+
+        if (filePath.isAbsolute()) {
+            return filePath.toAbsolutePath().normalize();
+        }
+
+
         String userDir = System.getProperty("user.dir");
         Path path;
 
