@@ -1,21 +1,69 @@
 [ {
-  "key" : "follow",
-  "type" : "removed",
-  "newValue" : null,
+  "key" : "chars2",
+  "type" : "changed",
+  "newValue" : false,
+  "oldValue" : [ "d", "e", "f" ]
+}, {
+  "key" : "checked",
+  "type" : "changed",
+  "newValue" : true,
   "oldValue" : false
 }, {
-  "key" : "proxy",
+  "key" : "default",
+  "type" : "changed",
+  "newValue" : [ "value1", "value2" ],
+  "oldValue" : "null"
+}, {
+  "key" : "id",
+  "type" : "changed",
+  "newValue" : "null",
+  "oldValue" : 45
+}, {
+  "key" : "key1",
   "type" : "removed",
   "newValue" : null,
-  "oldValue" : "123.234.53.22"
+  "oldValue" : "value1"
 }, {
-  "key" : "timeout",
-  "type" : "changed",
-  "newValue" : 20,
-  "oldValue" : 50
-}, {
-  "key" : "verbose",
+  "key" : "key2",
   "type" : "added",
-  "newValue" : true,
+  "newValue" : "value2",
   "oldValue" : null
+}, {
+  "key" : "numbers2",
+  "type" : "changed",
+  "newValue" : [ 22, 33, 44, 55 ],
+  "oldValue" : [ 2, 3, 4, 5 ]
+}, {
+  "key" : "numbers3",
+  "type" : "removed",
+  "newValue" : null,
+  "oldValue" : [ 3, 4, 5 ]
+}, {
+  "key" : "numbers4",
+  "type" : "added",
+  "newValue" : [ 4, 5, 6 ],
+  "oldValue" : null
+}, {
+  "key" : "obj1",
+  "type" : "added",
+  "newValue" : {
+    "nestedKey" : "value",
+    "isNested" : true
+  },
+  "oldValue" : null
+}, {
+  "key" : "setting1",
+  "type" : "changed",
+  "newValue" : "Another value",
+  "oldValue" : "Some value"
+}, {
+  "key" : "setting2",
+  "type" : "changed",
+  "newValue" : 300,
+  "oldValue" : 200
+}, {
+  "key" : "setting3",
+  "type" : "changed",
+  "newValue" : "none",
+  "oldValue" : true
 } ]
