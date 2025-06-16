@@ -11,15 +11,8 @@ public class FilePath {
             return filePath.toAbsolutePath().normalize();
         }
 
+        Path path = Paths.get("src", "test", "resources", "fixtures", fileName);
 
-        String userDir = System.getProperty("user.dir");
-        Path path;
-
-        if (userDir.contains("project")) {
-            path = Paths.get(userDir, "src", "test", "resources", "fixtures", fileName);
-        } else {
-            path = Paths.get("src", "test", "resources", "fixtures", fileName);
-        }
         return path.toAbsolutePath().normalize();
     }
 
