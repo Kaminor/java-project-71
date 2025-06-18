@@ -31,8 +31,8 @@ public final class DifferTest {
         var content1 = readFixture(file1);
         var content2 = readFixture(file2);
         String actual = format == null
-                                ? Differ.generate(content1, content2)
-                                : Differ.generate(content1, content2, format);
+                                ? generate(content1, content2)
+                                : generate(content1, content2, format);
 
         assertEquals(expected, actual);
     }
@@ -51,5 +51,18 @@ public final class DifferTest {
     public static String readFixture(String fileName) throws Exception {
         var path = getFixturePath(fileName);
         return Files.readString(path);
+    }
+
+    public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
+        var data1 = Parser.parse(filepath1);
+        var data2 = Parser.parse(filepath2);
+
+        var diffs = DifferUtil.buildDiff(data1, data2);
+
+        return Formatter.formatGenerate(diffs, formatName);
+    }
+
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
     }
 }
