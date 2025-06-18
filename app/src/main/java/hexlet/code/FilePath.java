@@ -5,20 +5,11 @@ import java.nio.file.Paths;
 
 public class FilePath {
     public static Path getFixturePath(String fileName) throws Exception {
-        Path filePath = Paths.get(fileName);
-
-        if (filePath.isAbsolute()) {
-            return filePath.toAbsolutePath().normalize();
-        }
-
-        Path path = Paths.get("src", "test", "resources", "fixtures", fileName);
-
-        return path.toAbsolutePath().normalize();
+        return Paths.get(fileName).toAbsolutePath().normalize();
     }
 
     public static String readFixture(String fileName) throws Exception {
         var path = getFixturePath(fileName);
-
         return Files.readString(path);
     }
 }

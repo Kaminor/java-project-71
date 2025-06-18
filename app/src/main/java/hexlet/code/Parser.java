@@ -8,11 +8,10 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 public class Parser {
 
 
-    public static Map<String, Object> parse(String fileName) throws Exception {
+    public static Map<String, Object> parse(String cont) throws Exception {
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory());
-        var readFile = FilePath.readFixture(fileName);
 
-        Map<Object, Object> dataMap = objMapper.readValue(readFile, new TypeReference<Map<Object, Object>>() { });
+        Map<Object, Object> dataMap = objMapper.readValue(cont, new TypeReference<Map<Object, Object>>() { });
 
         return dataMap.entrySet().stream()
                 .collect(Collectors.toMap(

@@ -28,32 +28,28 @@ public final class DifferTest {
     @MethodSource("provideTestCases")
     void testGenerate(String file1, String file2, String format, String expectedFile) throws Exception {
         String expected = readFixture(expectedFile);
+        var content1 = readFixture(file1);
+        var content2 = readFixture(file2);
         String actual = format == null
-                                ? Differ.generate(file1, file2)
-                                : Differ.generate(file1, file2, format);
+                                ? Differ.generate(content1, content2)
+                                : Differ.generate(content1, content2, format);
 
         assertEquals(expected, actual);
     }
 
-    public static Path getFixturePath(String fileName) {
-        return Paths.get("src", "test", "resources", "fixtures", fileName).toAbsolutePath().normalize();
+
+    public static Path getFixturePath(String fileName) throws Exception {
+        var resourceUrl = DifferTest.class.getClassLoader().getResource("fixtures/" + fileName);
+
+        if (resourceUrl == null) {
+            throw new IllegalArgumentException("Not found: " + resourceUrl);
+        }
+
+        return Paths.get(resourceUrl.toURI());
     }
 
     public static String readFixture(String fileName) throws Exception {
         var path = getFixturePath(fileName);
         return Files.readString(path);
-    }
-
-    public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
-        var data1 = Parser.parse(filepath1);
-        var data2 = Parser.parse(filepath2);
-
-        var diffs = DifferUtil.buildDiff(data1, data2);
-
-        return Formatter.formatGenerate(diffs, formatName);
-    }
-
-    public static String generate(String filepath1, String filepath2) throws Exception {
-        return generate(filepath1, filepath2, "stylish");
     }
 }

@@ -31,7 +31,9 @@ public class App {
 
         @Override
         public Integer call() throws Exception {
-            var result = Differ.generate(file1, file2, format);
+            var content1 = FilePath.readFixture(file1);
+            var content2 = FilePath.readFixture(file2);
+            var result = Differ.generate(content1, content2, format);
             System.out.println(result);
             return 0;
         }
