@@ -1,9 +1,7 @@
 package hexlet.code;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@EqualsAndHashCode
+@Data
 public final class JsonDiffer {
     private String key;
     private String type;

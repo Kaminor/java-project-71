@@ -1,5 +1,7 @@
 package hexlet.code;
+import lombok.Getter;
 
+@Getter
 public final class DifferData {
     private final String key;
     private final Object newValue;
@@ -10,17 +12,5 @@ public final class DifferData {
         this.key = key;
         this.newValue = newValue;
         this.oldValue = oldValue;
-    }
-
-    public String getKey() {
-        return this.key;
-    }
-
-    public Object getNewValue() {
-        return this.newValue;
-    }
-
-    public Object getOldValue() {
-        return this.oldValue;
     }
 }

@@ -1,12 +1,14 @@
-package hexlet.code.generators;
+package hexlet.code.formatters;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import hexlet.code.DifferData;
 import hexlet.code.JsonDiffer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonGenerator {
-    public static List<JsonDiffer> generateJson(List<DifferData> differs) {
+public class JsonFormatter {
+    public static String formatJson(List<DifferData> differs) throws Exception {
         List<JsonDiffer> result = new ArrayList<>();
 
         for (var element : differs) {
@@ -24,6 +26,9 @@ public class JsonGenerator {
                 continue;
             }
         }
-        return result;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        return mapper.writeValueAsString(result);
     }
 }

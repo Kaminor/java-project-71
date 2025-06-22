@@ -1,15 +1,14 @@
-package hexlet.code.generators;
+package hexlet.code.formatters;
 
 import hexlet.code.DifferData;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class PlainGenerator {
-    public static String generatePlain(List<DifferData> differs) {
-        String result = "";
+public class PlainFormatter {
+    public static String formatPlain(List<DifferData> differs) {
+        StringBuilder result = new StringBuilder();
 
         for (DifferData diff: differs) {
             String key = diff.getKey();
@@ -21,26 +20,30 @@ public class PlainGenerator {
             }
 
             if (isString(newValue) && !newValue.equals("null")) {
-                newValue = "'" + newValue + "'";
+                StringBuilder sb = new StringBuilder();
+                sb.append("'").append(newValue).append("'");
+                newValue = sb.toString();
             }
 
             if (isString(oldValue) && !oldValue.equals("null")) {
-                oldValue = "'" + oldValue + "'";
+                StringBuilder sb = new StringBuilder();
+                sb.append("'").append(oldValue).append("'");
+                oldValue = sb.toString();
             }
 
             newValue = isComplexValue(newValue) ? "[complex value]" : newValue;
             oldValue = isComplexValue(oldValue) ? "[complex value]" : oldValue;
 
             if (oldValue != null && newValue != null) {
-                result += String.format("Property '%s' was updated. From %s to %s%n", key, oldValue, newValue);
+                result.append(String.format("Property '%s' was updated. From %s to %s%n", key, oldValue, newValue));
             } else if (oldValue != null && newValue == null) {
-                result += String.format("Property '%s' was removed%n", key);
+                result.append(String.format("Property '%s' was removed%n", key));
             } else if (oldValue == null && newValue != null) {
-                result += String.format("Property '%s' was added with value: %s%n", key, newValue);
+                result.append(String.format("Property '%s' was added with value: %s%n", key, newValue));
             }
 
         }
-        return result.trim();
+        return result.toString().trim();
     }
 
     public static boolean isComplexValue(Object value) {
