@@ -6,10 +6,7 @@ app/build/
 
 ### IntelliJ IDEA ###
 .idea/
-app/.idea/modules.xml
-app/.idea/jarRepositories.xml
-app/.idea/compiler.xml
-app/.idea/libraries/
+app/.idea/
 app/*.iws
 app/*.iml
 app/*.ipr
