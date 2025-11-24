@@ -37,7 +37,6 @@ public class PlainFormatter {
         return result.toString().trim();
     }
 
-    //todo: обдумать логику с Null
     public static String stringify(Object value) {
         if (value == null) {
             return "null";

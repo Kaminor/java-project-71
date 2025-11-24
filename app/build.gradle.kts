@@ -1,5 +1,4 @@
 plugins {
-    id("java")
     id ("com.github.ben-manes.versions") version "0.52.0"
     application
     checkstyle
@@ -36,7 +35,7 @@ tasks.test {
 
 sonar {
     properties {
-        property("sonar.projectKey", "Kaminor_java-project-712")
+        property("sonar.projectKey", "Kaminor_java-project-71")
         property("sonar.organization", "kaminor")
         property("sonar.host.url", "https://sonarcloud.io")
     }
