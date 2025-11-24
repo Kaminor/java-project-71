@@ -11,16 +11,24 @@ public class StylishFormatter {
             String key = diff.getKey();
             Object newValue = diff.getNewValue();
             Object oldValue = diff.getOldValue();
+            String status = diff.getStatus();
 
-            if (newValue == null && oldValue != null) {
-                result.append(String.format("  - %s: %s%n", key, oldValue));
-            } else if (newValue != null && oldValue == null) {
-                result.append(String.format("  + %s: %s%n", key, newValue));
-            } else if (newValue.equals(oldValue)) {
-                result.append(String.format("    %s: %s%n", key, newValue));
-            } else if (newValue != null && oldValue != null) {
-                result.append(String.format("  - %s: %s%n", key, oldValue));
-                result.append(String.format("  + %s: %s%n", key, newValue));
+            switch (status) {
+                case "removed":
+                    result.append(String.format("  - %s: %s%n", key, oldValue));
+                    break;
+                case "added":
+                    result.append(String.format("  + %s: %s%n", key, newValue));
+                    break;
+                case "updated":
+                    result.append(String.format("  - %s: %s%n", key, oldValue));
+                    result.append(String.format("  + %s: %s%n", key, newValue));
+                    break;
+                case "unchanged":
+                    result.append(String.format("    %s: %s%n", key, newValue));
+                    break;
+                default:
+                    throw new RuntimeException(status + " не валидный");
             }
         }
 

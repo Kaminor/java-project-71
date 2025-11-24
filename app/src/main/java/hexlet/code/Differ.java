@@ -8,7 +8,7 @@ public class Differ {
         var data1 = Parser.parse(content1);
         var data2 = Parser.parse(content2);
 
-        var diffs = DifferUtil.buildDiff(data1, data2);
+        var diffs = DiffBuilder.buildDiff(data1, data2);
 
         return Formatter.formatGenerate(diffs, formatName);
     }
