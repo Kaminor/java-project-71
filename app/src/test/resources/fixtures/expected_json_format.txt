@@ -14,14 +14,14 @@
   "newValue" : true,
   "oldValue" : false
 }, {
-  "status" : "updated",
+  "status" : "added",
   "key" : "default",
   "newValue" : [ "value1", "value2" ],
-  "oldValue" : "null"
+  "oldValue" : null
 }, {
-  "status" : "updated",
+  "status" : "removed",
   "key" : "id",
-  "newValue" : "null",
+  "newValue" : null,
   "oldValue" : 45
 }, {
   "status" : "removed",

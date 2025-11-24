@@ -43,9 +43,6 @@ public class PlainFormatter {
         } else if (value instanceof Collection || value instanceof Map) {
             return "[complex value]";
         } else if (value instanceof String) {
-            if (value.equals("null")) {
-                return "null";
-            }
             return "'" + value + "'";
         }
         return value.toString();
