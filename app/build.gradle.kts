@@ -3,6 +3,7 @@ plugins {
     application
     checkstyle
     id("org.sonarqube") version "6.2.0.5505"
+    jacoco
 }
 
 application {
@@ -31,6 +32,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required = true
+    }
 }
 
 sonar {
